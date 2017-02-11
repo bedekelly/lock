@@ -2,7 +2,7 @@ from functools import wraps
 
 from flask import request, jsonify
 
-from lock_app.password import save_key
+from lock_app.password import save_key, lookup_key_length
 from .constants import KEY_LENGTH, BAD_TOKEN_ERROR, NO_KEY_ERROR, BAD_KEY_ERROR
 from .tokenutils import generate_token, authenticate_token
 
@@ -29,7 +29,7 @@ def get_key_length():
     """
     Flask endpoint which returns the key length as a JSON response.
     """
-    return jsonify(keylength=KEY_LENGTH)
+    return jsonify(keylength=lookup_key_length())
 
 
 def get_token():

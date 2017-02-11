@@ -1,15 +1,11 @@
 import string
 from secrets import choice
 
-from redis import StrictRedis
-
 from lock_app.constants import (
     TOKEN_LIFETIME, TOKEN_NUM_PARTS, TOKEN_PART_LENGTH
 )
 from lock_app.password import check_key
-
-
-redis_client = StrictRedis()
+from . import redis_client
 
 
 def authenticate_token(token):
@@ -20,7 +16,7 @@ def authenticate_token(token):
     :param token: The token to authenticate.
     :return: A truthy or falsy value indicating whether the token is valid.
     """
-    return redis_client.get(token)
+    return redis_client.get(token) == b"valid"
 
 
 def generate_token_string():

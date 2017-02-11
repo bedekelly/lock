@@ -123,3 +123,5 @@ Temporary Items
 
 venv*
 .idea*
+src/key.txt
+src/lock_app/keys.py
